@@ -2,10 +2,10 @@ const mysql = require('mysql');
 
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: "",
-    user: "",
+    host: "localhost",
+    user: "root",
     password: "",
-    database: ""
+    database: "final"
 });
 
 module.exports = pool;
