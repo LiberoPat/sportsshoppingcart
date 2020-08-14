@@ -1,7 +1,17 @@
 <%- include('partials/header.ejs') %>
-
 <body class="text-center">
-
+<%let value = (typeof sportSelection != "undefined") ? "/sport?sportSelection="+sportSelection : "/search?itemSearch="+itemSearch;%>
+<div class="dropdown dropleft float-lg-right">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Filters
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="<%= value %>&filterSelection=az">Alphabetical</a>
+        <a class="dropdown-item" href="<%= value%>&filterSelection=price">Price(Low - High)</a>
+        <a class="dropdown-item" href="#" id="cart">In Cart</a>
+        <a class="dropdown-item" href="<%= value%>">Clear Filters</a>
+    </div>
+</div>
     <main>
 
         <!-- <h2>Your Sports Selection Is: </h2> -->
@@ -9,18 +19,17 @@
         <div class="container">
 
             <% for(let i = 0; i < productObject.length; i++){
-            
                     if(i % 2 == 0){ %>
                         <div class="row">
                 <% } %>
 
-                    <div class="col-lg card-columns">
+                    <div class="col-lg card-columns productCart">
                         <div class="card" style="width: 18rem;">
-                            <h5 class="card-title"><%= productObject[i].productName %></h5>
-                            <img class="img-fluid" src="<%= productObject[i].productImagePath %>" class="card-img-top" alt="Product Image">
+                            <h5 class="card-title sportName"><%= productObject[i].productName %></h5>
+                            <img class="img-fluid sportImage" src="<%= productObject[i].productImagePath %>" class="card-img-top" alt="Product Image">
                             <div class="card-body">
-                                <p class="card-text">Price: $<%= productObject[i].productPrice %></p>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
+                                <p class="card-text sportPrice">Price: $<%= productObject[i].productPrice %></p>
+                                <a class="btn btn-primary addcartbtn" id="<%= i %>">Add to cart</a>
                             </div>
                         </div>
                     </div>
